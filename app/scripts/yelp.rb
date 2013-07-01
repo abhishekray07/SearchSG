@@ -1,19 +1,12 @@
-class HomeController < ApplicationController
-
 	require 'rubygems'
 	require 'oauth'
 	require 'json'
 	require 'net/http'
 
-	def index
 
-	end
+	query = 'indian restaurant'
+	results = 10
 
-	def search
-		@search_return = search_listing(params[:search])
-	end
-
-	def search_listing (query, results=10)	
 		consumer_key = 'M7hseeLGGd0tPL3cIzY4IA'
 		consumer_secret = 'i2jGuWzfqJfWoRCaHotL8uZIAp0'
 		token = 'o8UyyEXehc8bmy3a1SQ112XQcgcqnIPR'
@@ -29,7 +22,4 @@ class HomeController < ApplicationController
 		# path = "/v2/search?term=hospital&location=singapore&limit=10"
 
 		hash = JSON.parse access_token.get(path).body
-		return hash
-	end
-
-end
+		p hash["businesses"][0]["location"]["display_address"]

@@ -5,10 +5,15 @@
 	</div>
 
 	<div data-role="content" data-theme="b">  
-		<form>
+		<!-- <form action="/home/search" method="get">
 			<input type="search" name="search" id="search-basic" value="" placeholder="Search" />
 			<input type="submit" value="Search" data-theme="a" data-inline="true" data-icon="search"/>
-		</form>
+		</form> -->
+
+		<%= form_tag("/home/search", method: "get") do %>
+		  	<input type="search" name="search" id="search-basic" value="" placeholder="Search" />
+			<input type="submit" value="Search" data-theme="a" data-inline="true" data-icon="search"/>
+		<% end %>
 
 		<hr />
 		<ul data-role="listview" data-inset="true">

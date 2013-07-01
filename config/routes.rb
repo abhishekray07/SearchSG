@@ -1,4 +1,5 @@
 Searchsg::Application.routes.draw do
+  get "home/search"
   get "home/index"
 
   root :to => 'home#index'
