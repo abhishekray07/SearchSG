@@ -7,14 +7,9 @@
 	<div data-role="content" data-theme="b">  
 
 		<ul data-role="listview" data-inset="true">
-			<li data-role="list-divider" data-theme="a">Navigation</li>
+			<li data-role="list-divider" data-theme="a">Search Results</li>
 			<% @search_return["businesses"].each do |result| %>
-				<li>
-					<a href="#"><%= result["name"] %> | 
-						<% result["location"]["display_address"].each do |addr| %>
-							<%= addr %>
-						<% end %> 
-						| <%= result["phone"] %></a></li>
+				<li><%= link_to result["name"], home_show_path(:id => result["id"]) %> </li>
 			<% end %>
 		</ul>
 	</div>

@@ -18,8 +18,10 @@
 		access_token = OAuth::AccessToken.new(consumer, token, token_secret)
 
 		path = "/v2/search?term=#{URI.encode(query)}&location=singapore&limit=#{results}"
+		# path = "/v2/business/anjappar-authentic-chenttinaad-restuarant-singapore"
 
 		# path = "/v2/search?term=hospital&location=singapore&limit=10"
 
 		hash = JSON.parse access_token.get(path).body
-		p hash["businesses"][0]["location"]["display_address"]
+		p hash #["businesses"][0]
+		# [0]["location"]["display_address"]

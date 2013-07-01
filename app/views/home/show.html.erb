@@ -1,0 +1,39 @@
+<div data-role="page" id="search">  
+
+	<div data-role="header" data-position="inline">
+		<h1><%= @search_return["name"] %></h1>
+	</div>
+
+	<div data-role="content" data-theme="b">  
+
+		<div data-role="collapsible-set" data-theme="b" data-content-theme="b">
+			<div data-role="collapsible" data-collapsed-icon="flat-time" data-expanded-icon="flat-cross" data-collapsed="false">
+				<h3>Details</h3>
+				<p><b>Location:</b>
+				 	<%= @search_return["location"]["display_address"].join(", ") %></p>
+
+				<p><b>Phone No:</b> <%= @search_return["display_phone"] %></p>
+				<p><b>Category:</b> 
+					<% @search_return["categories"].each do |cat| %>
+						<%= cat.join(", ") %>
+					<% end %>
+				</p>
+
+			</div>
+			<div data-role="collapsible" data-collapsed-icon="flat-calendar" data-expanded-icon="flat-cross">
+				<h3>Reviews</h3>
+				<p> Reviews powered by Yelp </p>
+				<p><%= image_tag(@search_return["rating_img_url"]) %> <%= @search_return["review_count"]%> Reviews </p>
+
+				<% @search_return["reviews"].each do |review| %>
+					<p> <%= review["excerpt"] %> </p>
+				<% end %>
+			</div>
+			<div data-role="collapsible" data-collapsed-icon="flat-settings" data-expanded-icon="flat-cross">
+				<h3>Pictures</h3>
+				<p><%= image_tag (@search_return["image_url"]) %></p>
+			</div>
+		</div>
+	</div>
+</div>  
+
