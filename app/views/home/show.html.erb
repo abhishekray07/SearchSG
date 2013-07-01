@@ -1,7 +1,10 @@
 <div data-role="page" id="search">  
 
 	<div data-role="header" data-position="inline">
+
+		<a href=<%= home_search_path(:search => @search) %> data-icon="arrow-l">Back</a>
 		<h1><%= @search_return["name"] %></h1>
+		<a href=<%= home_index_path %> data-icon="home">Home</a>
 	</div>
 
 	<div data-role="content" data-theme="b">  
@@ -12,7 +15,14 @@
 				<p><b>Location:</b>
 				 	<%= @search_return["location"]["display_address"].join(", ") %></p>
 
-				<p><b>Phone No:</b> <%= @search_return["display_phone"] %></p>
+				<% if @search_return["display_phone"] 
+					phoneNum = 'tel:'+@search_return["display_phone"].gsub(/\s+/, "") 
+					%>
+
+				<p><b>Phone No:</b> <a href=<%= phoneNum %> class="ui-link-inherit"><%= @search_return["display_phone"] %></a></p>
+
+				<% end %>
+
 				<p><b>Category:</b> 
 					<% @search_return["categories"].each do |cat| %>
 						<%= cat.join(", ") %>
@@ -26,7 +36,7 @@
 				<p><%= image_tag(@search_return["rating_img_url"]) %> <%= @search_return["review_count"]%> Reviews </p>
 
 				<% @search_return["reviews"].each do |review| %>
-					<p> <%= review["excerpt"] %> </p>
+					<p> <%= review["excerpt"] %> </p> <hr />
 				<% end %>
 			</div>
 			<div data-role="collapsible" data-collapsed-icon="flat-settings" data-expanded-icon="flat-cross">

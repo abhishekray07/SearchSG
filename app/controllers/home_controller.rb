@@ -10,11 +10,13 @@ class HomeController < ApplicationController
 	end
 
 	def search
+		@search = params[:search]
 		@search_return = search_listing(params[:search])
 	end
 
 	def show
 		@id = params[:id]
+		@search = params[:search]
 		@search_return = listing_details(@id)
 	end
 

@@ -1,15 +1,21 @@
 <div data-role="page" id="search">  
 
 	<div data-role="header" data-position="inline">
+		<a href=<%= home_index_path %> data-icon="arrow-l">Back</a>
 		<h1>SearchSG</h1>
+		<a href=<%= home_index_path %> data-icon="home">Home</a>
 	</div>
 
 	<div data-role="content" data-theme="b">  
 
+		<%= form_tag("/home/search", method: "get") do %>
+		  	<input type="search" name="search" id="search-basic" value=<%= @search %> placeholder="Search" />
+		<% end %>
+
 		<ul data-role="listview" data-inset="true">
 			<li data-role="list-divider" data-theme="a">Search Results</li>
 			<% @search_return["businesses"].each do |result| %>
-				<li><%= link_to result["name"], home_show_path(:id => result["id"]) %> </li>
+				<li><%= link_to result["name"], home_show_path(:id => result["id"], :search => @search) %> </li>
 			<% end %>
 		</ul>
 	</div>
