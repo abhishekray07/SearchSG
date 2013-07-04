@@ -57,9 +57,14 @@ class HomeController < ApplicationController
 	end
 
 	def google_search (query)
+
+		if query.match(" ")
+			query = query.gsub!(' ', '%20')
+		end
 		
-		query_esc = query.gsub!(' ', '%20')
-		uri = URI.parse("https://maps.googleapis.com/maps/api/place/search/json?location=1.31675,103.8904&radius=5000&name=%22#{query_esc}%22&sensor=false&key=AIzaSyCoVITdjn-uJNxBr3qVGyQ69qbXAbbMaXQ")
+		p query
+		uri = URI.parse("https://maps.googleapis.com/maps/api/place/search/json?location=1.31675,103.8904&radius=5000&name=%22#{query}%22&sensor=false&key=AIzaSyCoVITdjn-uJNxBr3qVGyQ69qbXAbbMaXQ")
+		
 		# uri = URI.parse("https://maps.googleapis.com/maps/api/place/details/json?reference=CpQBgQAAAC9DsmLzesa5EPGeYmuGfhXcYZ3eUtnsJcXUXWlLRWNjZbd-sx-GSb_2KZcYfe8FHtTmUeAxbf4VOpwxkVJjc-xq4PBaUdL0NKwdG9Pt4K339PJoyHDcCW5M3ZOkRcaooo00zJaXsEfbthKCc6UbLKoSaBl3pAEtKWnNN5aEVD_CdoykO4cRinYLIJI-0Dmj0RIQWSpZeG2W77qqDq4B_i0SUxoUaMGymoOBLTiybwUBPHyzHq7olDw&sensor=false&key=AIzaSyCoVITdjn-uJNxBr3qVGyQ69qbXAbbMaXQ")
 		http = Net::HTTP.new(uri.host, uri.port)
 		http.use_ssl = true
