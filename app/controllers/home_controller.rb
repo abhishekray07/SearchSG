@@ -4,6 +4,7 @@ class HomeController < ApplicationController
 	require 'oauth'
 	require 'json'
 	require 'net/http'
+	require 'uri'
 
 	def index
 
@@ -11,7 +12,7 @@ class HomeController < ApplicationController
 
 	def search
 		@search = params[:search]
-		@search_return = search_listing(params[:search])
+		@search_return = google_search(params[:search])
 	end
 
 	def show
@@ -52,6 +53,23 @@ class HomeController < ApplicationController
 
 		path = "/v2/business/#{query}"
 		hash = JSON.parse access_token.get(path).body
+		return hash
+	end
+
+	def google_search (query)
+		
+		query_esc = query.gsub!(' ', '%20')
+		uri = URI.parse("https://maps.googleapis.com/maps/api/place/search/json?location=1.31675,103.8904&radius=5000&name=%22#{query_esc}%22&sensor=false&key=AIzaSyCoVITdjn-uJNxBr3qVGyQ69qbXAbbMaXQ")
+		# uri = URI.parse("https://maps.googleapis.com/maps/api/place/details/json?reference=CpQBgQAAAC9DsmLzesa5EPGeYmuGfhXcYZ3eUtnsJcXUXWlLRWNjZbd-sx-GSb_2KZcYfe8FHtTmUeAxbf4VOpwxkVJjc-xq4PBaUdL0NKwdG9Pt4K339PJoyHDcCW5M3ZOkRcaooo00zJaXsEfbthKCc6UbLKoSaBl3pAEtKWnNN5aEVD_CdoykO4cRinYLIJI-0Dmj0RIQWSpZeG2W77qqDq4B_i0SUxoUaMGymoOBLTiybwUBPHyzHq7olDw&sensor=false&key=AIzaSyCoVITdjn-uJNxBr3qVGyQ69qbXAbbMaXQ")
+		http = Net::HTTP.new(uri.host, uri.port)
+		http.use_ssl = true
+		http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+		request = Net::HTTP::Get.new(uri.request_uri)
+
+		response = http.request(request)
+		hash = JSON.parse response.body
+		
 		return hash
 	end
 

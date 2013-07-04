@@ -14,8 +14,8 @@
 
 		<ul data-role="listview" data-inset="true">
 			<li data-role="list-divider" data-theme="a">Search Results</li>
-			<% @search_return["businesses"].each do |result| %>
-				<li><%= link_to result["name"], home_show_path(:id => result["id"], :search => @search) %> </li>
+			<% @search_return["results"].each do |result| %>
+				<li> <%= result["name"] %> <br /> <%= result["vicinity"] %></li>
 			<% end %>
 		</ul>
 	</div>
