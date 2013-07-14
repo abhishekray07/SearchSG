@@ -1,7 +1,8 @@
 .open {
 	float:right;
 	font-weight: bold;
-	text-decoration: underline;
+	text-decoration: none;
 	font-size: 100%;
-	color: #000;
+	color: #ccc;
+	margin-top: 3px;
 }
