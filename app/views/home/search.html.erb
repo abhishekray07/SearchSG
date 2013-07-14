@@ -15,9 +15,20 @@
 		<ul data-role="listview" data-inset="true">
 			<li data-role="list-divider" data-theme="a">Search Results</li>
 			<% @search_return["results"].each do |result| %>
-				<li> <%= result["name"] %> <br /> <%= result["vicinity"] %></li>
+				<li> <%= result["name"] %> 
+					<% if result["opening_hours"] %>
+				 	 <p class="open">Open Now: 
+				 	 	<%if result["opening_hours"]["open_now"] %>
+				 	 		Yes
+				 	 	<% else %>
+				 	 		No
+				 	 	<% end %>
+				 	 </p> 
+				<% end %>
+
+				<br />
+				 <%= result["vicinity"] %> <br />
 			<% end %>
 		</ul>
 	</div>
-
 </div>  
