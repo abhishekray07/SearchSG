@@ -11,7 +11,8 @@ class HomeController < ApplicationController
 
 	def search
 		@search = params[:search]
-		@lat_long = get_lat_long()
+		@client_ip = remote_ip()
+		@lat_long = get_lat_long(@client_ip)
 		@search_return = google_search(params[:search], @lat_long["latitude"], @lat_long["longitude"])
 	end
 
@@ -58,8 +59,8 @@ class HomeController < ApplicationController
 		return hash["result"]
 	end
 
-	def get_lat_long ()
-		uri = URI.parse("http://api.ipinfodb.com/v3/ip-city/?key=4956ad7860aecf063c345adc290fd4e1d13af54ad99dcdeb8510b5bf08fc2524&format=json")
+	def get_lat_long (ip)
+		uri = URI.parse("http://api.ipinfodb.com/v3/ip-city/?key=4956ad7860aecf063c345adc290fd4e1d13af54ad99dcdeb8510b5bf08fc2524&ip=#{ip}&format=json")
 		http = Net::HTTP.new(uri.host, uri.port)
 
 		request = Net::HTTP::Get.new(uri.request_uri)
