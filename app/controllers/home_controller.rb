@@ -7,7 +7,7 @@ class HomeController < ApplicationController
 	require 'uri'
 
 	def index
-
+		@client_ip = request.remote_ip
 	end
 
 	def search
