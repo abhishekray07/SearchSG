@@ -13,36 +13,45 @@
 			<div data-role="collapsible" data-collapsed-icon="flat-time" data-expanded-icon="flat-cross" data-collapsed="false">
 				<h3>Details</h3>
 				<p><b>Location:</b>
-				 	<%= @search_return["location"]["display_address"].join(", ") %></p>
+				 	<%= @search_return["formatted_address"] %></p>
 
-				<% if @search_return["display_phone"] 
-					phoneNum = 'tel:'+@search_return["display_phone"].gsub(/\s+/, "") 
+				<% if @search_return["international_phone_number"] 
+					phoneNum = 'tel:'+@search_return["international_phone_number"].gsub(/\s+/, "") 
 					%>
 
-				<p><b>Phone No:</b> <a href=<%= phoneNum %> class="ui-link-inherit"><%= @search_return["display_phone"] %></a></p>
+				<p><b>Phone No:</b> <a href=<%= phoneNum %> class="ui-link-inherit"><%= @search_return["international_phone_number"] %></a></p>
 
 				<% end %>
 
-				<p><b>Category:</b> 
-					<% @search_return["categories"].each do |cat| %>
-						<%= cat.join(", ") %>
-					<% end %>
-				</p>
+				<% if @search_return["opening_hours"] %>
+					<p><b>Open Now:</b>
+						<% if @search_return["opening_hours"]["open_now"] %>
+							<%= "Yes" %>
+						<% else %>
+							<%= "No" %>
+						<% end %>
+					</p>
+				<% end %>
 
 			</div>
 			<div data-role="collapsible" data-collapsed-icon="flat-calendar" data-expanded-icon="flat-cross">
 				<h3>Reviews</h3>
-				<p> Reviews powered by Yelp </p>
-				<p><%= image_tag(@search_return["rating_img_url"]) %> <%= @search_return["review_count"]%> Reviews </p>
 
-				<% @search_return["reviews"].each do |review| %>
-					<p> <%= review["excerpt"] %> </p> <hr />
+				<% if @search_return["reviews"] %>
+					<%= "Reviews powered by Google+" %>
+					
+					<% @search_return["reviews"].each do |reviews| %>
+						<p><%= link_to reviews["author_name"], reviews["author_url"]  %></p>
+						<p>"<%= reviews["text"] %>"</p>
+
+					<% end %>
+
+				<% else %>
+					<%= "No Reviews available" %>
 				<% end %>
+				
 			</div>
-			<div data-role="collapsible" data-collapsed-icon="flat-settings" data-expanded-icon="flat-cross">
-				<h3>Pictures</h3>
-				<p><%= image_tag (@search_return["image_url"]) %></p>
-			</div>
+			
 		</div>
 	</div>
 </div>  
