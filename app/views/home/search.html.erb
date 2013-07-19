@@ -9,6 +9,9 @@
 	<div data-role="content" data-theme="b">  
 
 		<% @searchVal = @search.gsub!('%20', ' ') %>
+		<% if @searchVal == nil %>
+			<% @searchVal = @search %>
+		<% end %>
 
 		<%= form_tag("/home/search", method: "get") do %>
 		  	<input type="search" name="search" id="search-basic" value='<%= @searchVal %>'placeholder="Search" />
