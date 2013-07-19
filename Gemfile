@@ -10,7 +10,7 @@ group :development do
 end
 
 group :production do
-  gem "pg"
+  gem "mysql2"
 end
 
 gem 'yelpster'
@@ -28,6 +28,7 @@ group :assets do
 end
 
 gem 'geocoder'
+gem 'geokit'
 gem 'jquery-rails'
 gem 'jquery_mobile_rails'
 
