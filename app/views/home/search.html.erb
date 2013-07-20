@@ -34,7 +34,7 @@
 					<% end %>
 
 					<br />
-					<%= Geocoder::Calculations.distance_between([@lat_long["latitude"], @lat_long["longitude"]], [result["geometry"]["location"]["lat"],result["geometry"]["location"]["lng"]]).round(2)  %> kms 
+					<i><%= Geocoder::Calculations.distance_between([@lat_long["latitude"], @lat_long["longitude"]], [result["geometry"]["location"]["lat"],result["geometry"]["location"]["lng"]]).round(2)  %> </i> kms 
 					<% end %>
 				</li>
 			<% end %>
