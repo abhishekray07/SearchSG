@@ -22,7 +22,7 @@
 			<% @search_return["results"].each do |result| %>
 				<li> 
 					<%= link_to(home_show_path(:id => result["reference"], :search => @searchVal)) do %>
-					<%= result["name"] %> 
+					<p class="place_name"><%= result["name"] %></p>
 					<% if result["opening_hours"] %>
 				 	 <p class="open">Open Now: 
 				 	 	<% if result["opening_hours"]["open_now"] %>
