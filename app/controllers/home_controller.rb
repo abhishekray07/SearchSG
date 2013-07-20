@@ -22,6 +22,10 @@ class HomeController < ApplicationController
 		@search_return = google_search_details(@id)
 	end
 
+	def category
+		
+	end
+
 	def google_search (query, lat, long)
 
 		if query.match(" ")

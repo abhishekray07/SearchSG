@@ -3,6 +3,9 @@ Searchsg::Application.routes.draw do
   get "home/show"
   get "home/index"
 
+  match 'contact' => 'contact#new', :as => 'contact', :via => :get
+  match 'contact' => 'contact#create', :as => 'contact', :via => :post
+
   root :to => 'home#index'
 
   # The priority is based upon order of creation:

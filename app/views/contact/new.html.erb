@@ -1,0 +1,39 @@
+<div data-role="page" id="search">  
+
+  <div data-role="header" data-position="inline">
+
+    <a href=<%= home_index_path %> data-icon="arrow-l">Back</a>
+    <h1>Contact Us</h1>
+    <a href=<%= home_index_path %> data-icon="home">Home</a>
+  </div>
+
+  <div data-role="content" data-theme="b">  
+
+    <%= form_for @message, :url => contact_path do |form| %>
+    <fieldset class="fields">
+      <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= form.label :email %>
+        <%= form.text_field :email %>
+      </div>
+      <div class="field">
+        <%= form.label :subject %>
+        <%= form.text_field :subject %>
+      </div>
+
+      <div class="field">
+        <%= form.label :message %>
+        <%= form.text_area :message %>
+      </div>
+    </fieldset>
+
+    <fieldset class="actions">
+      <%= form.submit "Send" %>
+    </fieldset>
+    <% end %>
+
+  </div>  
