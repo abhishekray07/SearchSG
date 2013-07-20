@@ -1,0 +1,48 @@
+<div data-role="page" id="category">  
+
+	<div data-role="header" data-position="inline">
+		<a href=<%= home_index_path %> data-icon="arrow-l">Back</a>
+		<h1>SearchSG</h1>
+		<a href=<%= home_index_path %> data-icon="home">Home</a>
+	</div>
+
+	<div data-role="content" data-theme="b">  
+		<ul data-role="listview" data-inset="true">
+			<li data-role="list-divider" data-theme="a">Search by Category</li>
+			<li> 
+				<%= link_to "Restaurants", home_search_path(:search => "Restaurant"), :class => "place_name" %>
+			</li>
+			<li> 
+				<%= link_to "Shopping", home_search_path(:search => "Shopping"), :class => "place_name" %>
+			</li>
+
+			<li> 
+				<%= link_to "Food", home_search_path(:search => "Food"), :class => "place_name" %>
+			</li>
+
+			<li> 
+				<%= link_to "Health & Medical", home_search_path(:search => "Health"), :class => "place_name" %>
+			</li>
+
+			<li> 
+				<%= link_to "Spas", home_search_path(:search => "Spas"), :class => "place_name" %>
+			</li>
+
+			<li> 
+				<%= link_to "Home Services", home_search_path(:search => "Home Services"), :class => "place_name" %>
+			</li>
+
+			<li> 
+				<%= link_to "Hotels", home_search_path(:search => "Hotels"), :class => "place_name" %>
+			</li>
+
+			<li> 
+				<%= link_to "Entertainment", home_search_path(:search => "Entertainment"), :class => "place_name" %>
+			</li>
+
+			<li> 
+				<%= link_to "Education", home_search_path(:search => "Education"), :class => "place_name" %>
+			</li>
+		</ul>
+	</div>
+</div>  

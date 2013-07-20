@@ -2,6 +2,7 @@ Searchsg::Application.routes.draw do
   get "home/search"
   get "home/show"
   get "home/index"
+  get "home/category"
 
   match 'contact' => 'contact#new', :as => 'contact', :via => :get
   match 'contact' => 'contact#create', :as => 'contact', :via => :post
