@@ -5,14 +5,23 @@
 	</div>
 
 	<div data-role="content" data-theme="b">  
-		<!-- <form action="/home/search" method="get">
-			<input type="search" name="search" id="search-basic" value="" placeholder="Search" />
-			<input type="submit" value="Search" data-theme="a" data-inline="true" data-icon="search"/>
-		</form> -->
+		<% if flash[:notice] %>
+		<div class = "alert alert-success">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<%= flash[:notice] %>
+		</div>
+		<% end %>
+
+		<% if flash[:alert] %>
+		<div class = "alert alert-error">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<%= flash[:alert] %>
+		</div>
+		<% end %>
 
 		<%= form_tag("/home/search", method: "get") do %>
-		  	<input type="search" name="search" id="search-basic" value="" placeholder="Search" />
-			<input type="submit" value="Search" data-theme="a" data-inline="true" data-icon="search"/>
+		<input type="search" name="search" id="search-basic" value="" placeholder="Search" />
+		<input type="submit" value="Search" data-theme="a" data-inline="true" data-icon="search" class ="btn btn-primary"/>
 		<% end %>
 
 		<hr />
